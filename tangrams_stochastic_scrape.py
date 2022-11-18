@@ -1,0 +1,1 @@
+# This script stochastically scrapes heightmap data from: https://tangrams.github.io/heightmapper/
