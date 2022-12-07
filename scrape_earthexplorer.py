@@ -41,6 +41,8 @@ one_arcsecond_checkbox.click()
 results_tab = driver.find_element(By.ID, 'tab4')
 results_tab.click()
 
+time.sleep(3)
+
 # Download SRTM heightmaps.
 download_options_buttons = driver.find_elements(By.CLASS_NAME, 'download')
 
