@@ -1,11 +1,13 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
+from selenium.webdriver.common.keys import Keys
 import time
 
 username = ''
 password = ''
 
 driver = webdriver.Chrome()
+driver.implicitly_wait(100)
 
 # Login.
 driver.get('https://ers.cr.usgs.gov/login')
@@ -25,7 +27,7 @@ driver.get('https://earthexplorer.usgs.gov/')
 datasets_tab = driver.find_element(By.ID, 'tab2')
 datasets_tab.click()
 
-time.sleep(3)
+#time.sleep(3)
 
 digital_elevation_li = driver.find_element(By.ID, 'cat_207')
 digital_elevation_expander = digital_elevation_li.find_element(By.CLASS_NAME, 'folder');
@@ -41,35 +43,28 @@ one_arcsecond_checkbox.click()
 results_tab = driver.find_element(By.ID, 'tab4')
 results_tab.click()
 
-time.sleep(3)
+#time.sleep(3)
 
 # Download SRTM heightmaps.
-download_options_buttons = driver.find_elements(By.CLASS_NAME, 'download')
-
-for k in range(1428):
+for k in range(1, 1428):
+    download_options_buttons = driver.find_elements(By.CLASS_NAME, 'download')
+    #if (1 == 0):
     for i in range(len(download_options_buttons)):
-        time.sleep(3)
-
+        
         download_options_buttons[i].click()
-
-        time.sleep(3)
 
         download_options_container = driver.find_element(By.ID, 'optionsContainer')
         download_buttons = download_options_container.find_elements(By.CLASS_NAME, 'downloadButtons')
         geotiff_download_button = download_buttons[2]
         geotiff_download_button.click()
 
-        time.sleep(3)
-
         close_button = driver.find_element(By.XPATH, '/html/body/div[7]/div[1]/button')
         close_button.click()
-
-        time.sleep(10)
-
+    
+    page_selector = driver.find_element(By.ID, 'pageSelector_5e83a3ee1af480c5_F')
+    page_selector.send_keys(Keys.DELETE, Keys.DELETE, Keys.DELETE, Keys.DELETE)
+    page_selector.send_keys(str(k + 1))
+    page_selector.send_keys(Keys.RETURN)
     time.sleep(50)
-    next_button = driver.find_element(By.ID, '2_5e83a3ee1af480c5')
-    next_button.click()
 
 time.sleep(10)
-
-
