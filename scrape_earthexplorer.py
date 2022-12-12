@@ -1,13 +1,14 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.support.wait import WebDriverWait
 import time
 
 username = ''
 password = ''
 
 driver = webdriver.Chrome()
-driver.implicitly_wait(100)
+driver.implicitly_wait(1000)
 
 # Login.
 driver.get('https://ers.cr.usgs.gov/login')
@@ -26,8 +27,7 @@ driver.get('https://earthexplorer.usgs.gov/')
 
 datasets_tab = driver.find_element(By.ID, 'tab2')
 datasets_tab.click()
-
-#time.sleep(3)
+print('Started loading datasets tab.')
 
 digital_elevation_li = driver.find_element(By.ID, 'cat_207')
 digital_elevation_expander = digital_elevation_li.find_element(By.CLASS_NAME, 'folder');
@@ -39,32 +39,44 @@ srtm_expander.click()
 
 one_arcsecond_checkbox = driver.find_element(By.ID, 'coll_5e83a3ee1af480c5')
 one_arcsecond_checkbox.click()
+print('Selected SRTM 1 arc-second.')
 
 results_tab = driver.find_element(By.ID, 'tab4')
 results_tab.click()
-
-#time.sleep(3)
+print('Started loading results tab.')
 
 # Download SRTM heightmaps.
 for k in range(1, 1428):
+    page_selector = driver.find_element(By.ID, 'pageSelector_5e83a3ee1af480c5_F')
+
+    if int(page_selector.get_attribute('value')) != k:
+        print('Waiting for page ' + str(k) + ' to load.')
+        while int(page_selector.get_attribute('value')) != k:
+            time.sleep(driver, 0.5)
+    print('Page ' + str(k) + ' has loaded.')
+
     download_options_buttons = driver.find_elements(By.CLASS_NAME, 'download')
-    #if (1 == 0):
+
     for i in range(len(download_options_buttons)):
-        
+        current_result_number = (k - 1) * len(download_options_buttons) + i + 1
+        current_result_number_string = str(current_result_number)
+
         download_options_buttons[i].click()
+        print('Opened download menu for result ' + current_result_number_string + '.')
 
         download_options_container = driver.find_element(By.ID, 'optionsContainer')
         download_buttons = download_options_container.find_elements(By.CLASS_NAME, 'downloadButtons')
         geotiff_download_button = download_buttons[2]
         geotiff_download_button.click()
+        print('Started downloading result ' + current_result_number_string + '.')
 
         close_button = driver.find_element(By.XPATH, '/html/body/div[7]/div[1]/button')
         close_button.click()
+        print('Closed download menu for result ' + current_result_number_string + '.')
     
     page_selector = driver.find_element(By.ID, 'pageSelector_5e83a3ee1af480c5_F')
     page_selector.send_keys(Keys.DELETE, Keys.DELETE, Keys.DELETE, Keys.DELETE)
     page_selector.send_keys(str(k + 1))
     page_selector.send_keys(Keys.RETURN)
-    time.sleep(50)
-
-time.sleep(10)
+    print('Started loading page ' + str(k + 1) + '.')
+    time.sleep(10)
