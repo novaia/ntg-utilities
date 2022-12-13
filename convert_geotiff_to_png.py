@@ -1,6 +1,12 @@
 import rasterio
 import matplotlib.pyplot as plt
+import os
 
-image_name = 'n00_w058_1arc_v3'
-image = rasterio.open(image_name + '.tif')
-plt.imsave(image_name + '.png', image.read(1), cmap='gray')
+input_directory = '/Users/Hayden/Desktop/geotiffs/'
+output_directory = 'output/'
+
+file_list = os.listdir(input_directory)
+
+for i in range(len(file_list)):
+    image = rasterio.open(input_directory + file_list[i])
+    plt.imsave(output_directory + file_list[i][0:-4] + '.png', image.read(1), cmap = 'gray')
