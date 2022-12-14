@@ -1,2 +1,2 @@
 # npt-utilities
-Utility scripts for Neural Procedural Terrain.
+Utility scripts for the development of Neural Procedural Terrain.
