@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import os
 
 input_directory = '/Users/Hayden/Desktop/geotiffs/'
-output_directory = 'output/'
+output_directory = 'D:\heightmap_pngs/'
 
 file_list = os.listdir(input_directory)
 
