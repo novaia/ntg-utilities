@@ -1,7 +1,7 @@
 import os
 import cv2
 
-input_directory = '/Users/Hayden/Desktop/ml/heightmaps/'
+input_directory = '/Users/Hayden/Desktop/ml/split_heightmaps/'
 output_directory = '../../Desktop/ml/blurred_heightmaps/'
 
 file_list = os.listdir(input_directory)
