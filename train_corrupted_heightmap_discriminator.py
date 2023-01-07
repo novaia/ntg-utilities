@@ -5,7 +5,7 @@ from keras.callbacks import ReduceLROnPlateau
 from keras.callbacks import ModelCheckpoint
 
 batch_size = 32
-image_size = 256
+image_size = 360
 channels = 1
 
 data_path = 'data/heightmap_discrimination_dataset'
