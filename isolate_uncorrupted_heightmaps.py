@@ -15,8 +15,6 @@ file_list = os.listdir(input_directory)
 corrupted_count = 0
 uncorrupted_count = 0
 
-print(len(file_list))
-
 for i in range(int(len(file_list) / batch_size)):
     batch = []
     for k in range(batch_size):
