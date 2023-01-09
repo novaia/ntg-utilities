@@ -3,8 +3,8 @@ import keras
 import cv2
 import numpy as np
 
-input_directory = 'C:/Users/Hayden/Desktop/heightmaps/split_heightmaps'
-output_directory = 'C:/Users/Hayden/Desktop/heightmaps/uncorrupted_split_heightmaps'
+input_directory = 'C:/Users/Hayden/Desktop/heightmaps/split_heightmaps/'
+output_directory = 'C:/Users/Hayden/Desktop/heightmaps/uncorrupted_split_heightmaps/'
 batch_size = 32
 image_size = 360
 
@@ -29,7 +29,7 @@ for i in range(int(len(file_list) / batch_size)):
 
     for k in range(batch_size):
         if(output[k][1] > output[k][0]):
-            cv2.imwrite(output_directory + file_list[i + k] + '.png', batch[k])
+            cv2.imwrite(output_directory + file_list[i * batch_size + k] + '.png', batch[k])
             print('Saving ' + file_list[i * batch_size + k])
             uncorrupted_count += 1
         else:
