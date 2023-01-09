@@ -3,8 +3,8 @@ import keras
 import cv2
 import numpy as np
 
-input_directory = 'C:/Users/Hayden/Desktop/split_heightmaps/'
-output_directory = 'C:/Users/Hayden/Desktop/uncorrupted_heightmaps/'
+input_directory = 'C:/Users/Hayden/Desktop/heightmaps/split_heightmaps'
+output_directory = 'C:/Users/Hayden/Desktop/heightmaps/uncorrupted_split_heightmaps'
 batch_size = 32
 image_size = 360
 
