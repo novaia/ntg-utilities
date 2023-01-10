@@ -4,7 +4,7 @@ gcloud cp -r C:/Users/Hayden/Desktop/heightmaps/uncorrupted_split_heightmaps gs:
 ``
 
 ## Mount GCS bucket to Vertex AI notebook
-``
+```
 MY_BUCKET=cloud-ai-platform-a013866a-a18a-470f-9d35-f485abb17e82
 
 cd ~/
@@ -12,4 +12,4 @@ cd ~/
 mkdir -p gcs
 
 gcsfuse --implicit-dirs --rename-dir-limit=100 --disable-http2 --max-conns-per-host=100 $MY_BUCKET "/home/jupyter/gcs"
-``
+```
