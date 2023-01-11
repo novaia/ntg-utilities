@@ -5,7 +5,7 @@ gcloud cp -r C:/Users/Hayden/Desktop/heightmaps/uncorrupted_split_heightmaps gs:
 
 ## Move folder from GCS bucket to Vertex AI notebook
 ```
-gutil cp -r gs://cloud-ai-platform-a013866a-a18a-470f-9d35-f485abb17e82/uncorrupted_split_heightmaps/ /home/jupyter/
+gutil -m cp -r gs://cloud-ai-platform-a013866a-a18a-470f-9d35-f485abb17e82/uncorrupted_split_heightmaps/ /home/jupyter/
 ```
 
 ## Mount GCS bucket to Vertex AI notebook
